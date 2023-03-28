@@ -25,6 +25,9 @@ function App() {
             .then(data => setComments(data));
     }, []);
 
+
+    //onClick method
+    //increasing visibleComments by 3
     const showMoreComments = (postId) => {
         setVisibleComments({
             ...visibleComments,
@@ -32,10 +35,12 @@ function App() {
         });
     }
 
+
+    //render comments
     const getCommentsToShow = (postId) =>
         comments
             .filter((comment) => comment.postId === postId)
-            .slice(0, visibleComments[postId] || 0);
+            .slice(0, visibleComments[postId] || 0); //default value is 0
 
 
   // const commentsToShow = comments.slice(0, visibleComments);
@@ -58,6 +63,8 @@ function App() {
                           </li>
                       ))}
                 </ol>
+                  {/*checking if there are any comments*/}
+                  {/*TODO: collapsing comments*/}
                   {getCommentsToShow(post.id).length < comments.length && (
                   <button onClick={() => showMoreComments(post.id)}>Load more</button>
                   )}
