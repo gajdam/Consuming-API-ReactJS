@@ -40,6 +40,9 @@ function App() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [currentPage, posts]);
 
+    //onClick method
+    //increasing visibleComments by 3
+    
     const showMoreComments = (postId) => {
         setVisibleComments({
             ...visibleComments,
@@ -51,6 +54,8 @@ function App() {
         const postComments = comments.filter((comment) => comment.postId === postId);
         return postComments.slice(0, visibleComments[postId] || 0);
     };
+
+    //render comments
 
     const hasMoreComments = (postId) => {
         const postComments = comments.filter((comment) => comment.postId === postId);
@@ -75,6 +80,7 @@ function App() {
                                 </li>
                             ))}
                         </ol>
+                        {/*checking if there are any comments*/}
                         {hasMoreComments(post.id) && (
                             <button onClick={() => showMoreComments(post.id)}>Load more</button>
                         )}
@@ -83,6 +89,7 @@ function App() {
             </ol>
         </div>
     );
+
 }
 
 export default App;
