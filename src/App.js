@@ -4,8 +4,8 @@ import Posts from './Posts';
 const App = () => {
     return (
         <div>
-            <h1>My Blog</h1>
-            <Posts />
+            <h1>Consuming json placeholder API</h1>
+            <Posts/>
         </div>
     );
 };
