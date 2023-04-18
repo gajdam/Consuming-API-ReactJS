@@ -1,4 +1,4 @@
-import {getByRole, getByText, render, screen, within} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import App from './App';
 //posts
 
@@ -8,6 +8,7 @@ test('displays container correctly', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
+//after clean-up change this test doesn't work
 test('renders posts list', () => {
   render(<App />);
   const postsList = screen.getByRole('list');
