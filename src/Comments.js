@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Comments = ({ postId }) => {
     const [comments, setComments] = useState([]);
     const [loadedComments, setLoadedComments] = useState([]);
+    const [hideBtn, setHideBtn] = useState(false);
 
     //loading comms
     useEffect(() => {
@@ -12,14 +13,25 @@ const Comments = ({ postId }) => {
                 setComments(data);
                 setLoadedComments(data.slice(0, 2)); //default value
             });
+
     }, [postId]);
 
     const handleLoadMoreClick = () => {
         const currentlyLoadedCount = loadedComments.length;
+        const index = currentlyLoadedCount + 3;
         const moreComments = comments.slice(currentlyLoadedCount, currentlyLoadedCount + 3);
-        setLoadedComments([...loadedComments, ...moreComments]);
+        setLoadedComments([...loadedComments, ...moreComments]); //spread
+
+        if (index >= comments.length) {
+            setHideBtn(true);
+        }
     }
 
+    const handleHideClick = () => {
+        setLoadedComments(comments.slice(0, 2));
+        setHideBtn(false);
+
+    }
     return (
         <div>
             <h4>Comments</h4>
@@ -31,8 +43,10 @@ const Comments = ({ postId }) => {
                     </li>
                 ))}
             </ul>
-            {loadedComments.length < comments.length && (
+            {!hideBtn ? (
                 <button onClick = {handleLoadMoreClick}>Load more</button>
+            ) : (
+                <button onClick = {handleHideClick}>Hide</button>
             )}
         </div>
     );
