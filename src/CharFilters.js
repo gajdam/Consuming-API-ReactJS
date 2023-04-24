@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Filters = ({onFilterClick}) => {
+const CharFilters = ({onFilterClick}) => {
     const [activeFilter, setActiveFilter] = useState();
 
     const handleFilterClick = (filterType) => {
@@ -18,4 +18,4 @@ const Filters = ({onFilterClick}) => {
     )
 };
 
-export default Filters;
+export default CharFilters;
