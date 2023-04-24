@@ -30,7 +30,6 @@ const Comments = ({ postId }) => {
     const handleHideClick = () => {
         setLoadedComments(comments.slice(0, 2));
         setHideBtn(false);
-
     }
     return (
         <div>
