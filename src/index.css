@@ -5,7 +5,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lightslategray;
+  /*background-color: gray;*/
+}
+
+#light {
+  background-color: white;
+  color: black;
+}
+
+#light button{
+  background-color: pink;
+  color: black;
+}
+
+#dark {
+  background-color: black;
+  color: white;
 }
 
 code {
