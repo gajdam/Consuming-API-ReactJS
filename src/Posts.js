@@ -47,8 +47,9 @@ const Posts = () => {
         setFilteredPosts(() => filtered);
         setLoadedPosts(filtered.slice(0,loadNumber));
 
-        if(loadedPosts.length > filteredPosts.length)
+        if(loadedPosts.length >= filteredPosts.length){
             setHideBtn(true);
+        }
         else setHideBtn(false);
     };
 
@@ -59,20 +60,24 @@ const Posts = () => {
                 loadFrequency = 3;
                 break;
             case 2:
-                loadFrequency = 5;
+                loadFrequency = 6;
                 break;
             case 3:
-                loadFrequency = 8;
+                loadFrequency = 9;
                 break;
             case 4:
-                loadFrequency = 10;
+                loadFrequency = 12;
+                break;
+            default:
+                loadFrequency = 3;
                 break;
         }
         setLoadNumber(() => loadFrequency);
         setLoadedPosts(() => filteredPosts.slice(0,loadNumber));
 
-        if(loadedPosts.length > filteredPosts.length)
+        if(loadedPosts.length >= filteredPosts.length){
             setHideBtn(true);
+        }
         else setHideBtn(false);
     };
 
