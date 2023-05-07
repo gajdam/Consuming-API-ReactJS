@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Comments from './Comments';
 import CharFilters from './CharFilters'
 import LoadFilters from "./LoadFilters";
+import './index.css'
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
@@ -92,7 +93,7 @@ const Posts = () => {
             <CharFilters onFilterClick = {handleCharFilterClick}/>
             <LoadFilters onFilterClick = {handleLoadFilterClick}/>
             {loadedPosts.map(post => (
-                <div key={post.id}>
+                <div key={post.id} className="posts">
                     <h3>{post.title}</h3>
                     <p>{post.body}</p>
                     {/*Passing postID to Comments*/}
