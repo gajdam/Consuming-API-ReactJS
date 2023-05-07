@@ -1,31 +1,6 @@
 import {fireEvent, render, screen} from '@testing-library/react';
 import App from './App';
-//posts
-
-// test('displays container correctly', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/Posts/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
-
-//after clean-up change this test doesn't work
-// test('renders posts list', () => {
-//   render(<App />);
-//   const postsList = screen.getByRole('list');
-//   expect(postsList).toBeInTheDocument();
-// });
-
-// test('renders the first post', async () => {
-//   render(<App />);
-//   const postTitle = await screen.findByText('sunt aut facere repellat provident occaecati excepturi optio reprehenderit');
-//   expect(postTitle).toBeInTheDocument();
-// });
-
-// test('renders load more button', () => {
-//   render(<App />);
-//     const button = screen.getByRole('button', { name: 'Load more' });
-//     expect(button).toBeInTheDocument();
-// });
+import ScrollUpButton from "./ScrollUpButton";
 
 //APP Component tests
 
@@ -76,6 +51,13 @@ test('changes theme on button click', () => {
   expect(document.documentElement.style.getPropertyValue('--bg-color')).toBe('grey');
 });
 
+//SCROLL-UP-BTN tests
+
+test('does not render the button when isVisible is false', () => {
+  render(<ScrollUpButton/>);
+  const button = screen.queryByRole('button');
+  expect(button).not.toBeInTheDocument();
+});
 
 
 
