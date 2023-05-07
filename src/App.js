@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Posts from './Posts';
 import Albums from "./Albums";
 import {createContext} from "react";
+import ScrollUpButton from "./ScrollUpButton";
 
 export const ThemeContext = createContext(null);
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
                 <button onClick={() => setPostsOrAlbums(false)} disabled={!postsOrAlbums}>Albums</button>
             </div>
             {postsOrAlbums ? <Posts /> : <Albums />}
+            <ScrollUpButton />
         </div>
 
     );

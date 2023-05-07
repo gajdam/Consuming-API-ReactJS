@@ -27,6 +27,8 @@ import App from './App';
 //     expect(button).toBeInTheDocument();
 // });
 
+//APP Component tests
+
 test('renders app component', () => {
   render(<App />);
   const appContainer = screen.getByTestId('container');
