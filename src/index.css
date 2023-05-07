@@ -1,8 +1,8 @@
 :root {
-  --bg-color: #FFFFFF;
-  --txt-color: #black;
+  --bg-color: grey;
+  --txt-color: black;
   --btn-color: #41658A;
-  --btn-hover: grey;
+  --btn-hover: blue;
 }
 
 html, body {

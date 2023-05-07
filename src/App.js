@@ -6,40 +6,29 @@ import {createContext} from "react";
 export const ThemeContext = createContext(null);
 const App = () => {
     const [postsOrAlbums, setPostsOrAlbums] = useState(true);
-    const [bgTheme, setBgTheme] = useState(null);
-    const [colorTheme, setColorTheme] = useState(null);
-    const [btnTheme, setBtnTheme] = useState(null);
-    const [btnHoverTheme, setBtnHoverTheme] = useState(null);
+    const [isDarkThemeOn, setIsDarkThemeOn] = useState(false);
 
     const toggleTheme = () => {
         const root = document.documentElement;
-        const newBgTheme = bgTheme === "light" ? "dark" : "light";
-        const newColorTheme = bgTheme === "light" ? "dark" : "light";
-        const newBtnTheme = bgTheme === "light" ? "dark" : "light";
-        const newBtnHoverTheme = bgTheme === "light" ? "dark" : "light";
-        root.style.setProperty('--bg-color', newBgTheme === "light" ? 'grey' : 'black');
-        root.style.setProperty('--txt-color', newColorTheme === "light" ? 'black' : 'white');
-        root.style.setProperty('--btn-color', newBtnTheme === "light" ? '#41658A' : 'pink');
-        root.style.setProperty('--btn-hover', newBtnHoverTheme === "light" ? 'grey' : 'red');
-        setBgTheme(newBgTheme);
-        setColorTheme(newColorTheme);
-        setBtnTheme(newBtnTheme);
-        setBtnHoverTheme(newBtnHoverTheme);
+        root.style.setProperty('--bg-color', isDarkThemeOn ? 'grey' : 'black');
+        root.style.setProperty('--txt-color', isDarkThemeOn ? 'black' : 'white');
+        root.style.setProperty('--btn-color', isDarkThemeOn ? '#41658A' : 'pink');
+        root.style.setProperty('--btn-hover', isDarkThemeOn ? 'blue' : 'red');
+
+        setIsDarkThemeOn(!isDarkThemeOn);
     };
 
     return (
-        <div className="App">
+        <div className="App" data-testid="container">
             <h1>Consuming json placeholder API</h1>
-            <button onClick={toggleTheme}>klik</button>
+            <button onClick={toggleTheme}>click</button>
             <div>
-                <button onClick={() => setPostsOrAlbums(true)}>Posts</button>
-                <button onClick={() => setPostsOrAlbums(false)}>Albums</button>
+                <button onClick={() => setPostsOrAlbums(true)} disabled={postsOrAlbums}>Posts</button>
+                <button onClick={() => setPostsOrAlbums(false)} disabled={!postsOrAlbums}>Albums</button>
             </div>
-            {postsOrAlbums
-                ? <Posts/>
-                : <Albums/>
-            }
+            {postsOrAlbums ? <Posts /> : <Albums />}
         </div>
+
     );
 };
 
