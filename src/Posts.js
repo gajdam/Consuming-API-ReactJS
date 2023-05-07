@@ -17,9 +17,20 @@ const Posts = () => {
             .then(data => {
                 setPosts(data);
                 setFilteredPosts(data); //at page start, filteredPosts are the same as Posts, its default value
-                setLoadedPosts(filteredPosts.slice(0,loadNumber));
+                setLoadedPosts(data.slice(0,loadNumber));
             });
     }, []);
+
+    useEffect(() => {
+        setLoadedPosts(() => filteredPosts.slice(0,loadNumber));
+    }, [loadNumber, filteredPosts]);
+
+    useEffect(() => {
+        if(loadedPosts.length >= filteredPosts.length){
+            setHideBtn(true);
+        }
+        else setHideBtn(false);
+    }, [loadedPosts]);
 
     const handleCharFilterClick = (filterType) => {
         let filtered = [];
@@ -45,52 +56,34 @@ const Posts = () => {
                 break;
         }
         setFilteredPosts(() => filtered);
-        setLoadedPosts(filtered.slice(0,loadNumber));
-
-        if(loadedPosts.length >= filteredPosts.length){
-            setHideBtn(true);
-        }
-        else setHideBtn(false);
     };
 
     const handleLoadFilterClick = (filterType) => {
-        let loadFrequency;
         switch(filterType){
             case 1:
-                loadFrequency = 3;
+                setLoadNumber(() => 3);
                 break;
             case 2:
-                loadFrequency = 6;
+                setLoadNumber(() => 6);
                 break;
             case 3:
-                loadFrequency = 9;
+                setLoadNumber(() => 9);
                 break;
             case 4:
-                loadFrequency = 12;
+                setLoadNumber(() => 12);
                 break;
             default:
-                loadFrequency = 3;
+                setLoadNumber(() => 3);
                 break;
         }
-        setLoadNumber(() => loadFrequency);
-        setLoadedPosts(() => filteredPosts.slice(0,loadNumber));
-
-        if(loadedPosts.length >= filteredPosts.length){
-            setHideBtn(true);
-        }
-        else setHideBtn(false);
     };
 
+    //loading mechanic
     const handleLoadMoreClick = () => {
         const currentlyLoadedCount = loadedPosts.length;
         const index = currentlyLoadedCount + loadNumber;
         const morePosts = filteredPosts.slice(currentlyLoadedCount, currentlyLoadedCount + loadNumber);
         setLoadedPosts([...loadedPosts, ...morePosts]);
-
-        if(index >= filteredPosts.length) {
-            setHideBtn(true);
-        }
-        else setHideBtn(false);
     }
 
     return (
@@ -106,9 +99,9 @@ const Posts = () => {
                     <Comments postId={post.id} />
                 </div>
             ))}
-            {!hideBtn && (
+            {!hideBtn ? (
                 <button onClick={handleLoadMoreClick}>Load More</button>
-            )}
+            ) : (<h4>No more posts</h4>)}
         </div>
     );
 };
