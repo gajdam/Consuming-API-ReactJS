@@ -33,7 +33,8 @@ const Comments = ({ postId }) => {
     }
     return (
         <div>
-            <h4>Comments</h4>
+            <h4 className="commentsHeader">Comments</h4>
+            <div className="comments">
             <ul>
                 {loadedComments.map(comment => (
                     <li key={comment.id}>
@@ -47,6 +48,7 @@ const Comments = ({ postId }) => {
             ) : (
                 <button onClick = {handleHideClick}>Hide</button>
             )}
+            </div>
         </div>
     );
 };
