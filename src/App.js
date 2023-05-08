@@ -3,6 +3,8 @@ import Posts from './Posts';
 import Albums from "./Albums";
 import {createContext} from "react";
 import ScrollUpButton from "./ScrollUpButton";
+import GoogleLogin from "./GoogleLogin"
+import {GoogleOAuthProvider} from "@react-oauth/google";
 
 export const ThemeContext = createContext(null);
 const App = () => {
@@ -21,17 +23,19 @@ const App = () => {
     };
 
     return (
-        <div className="App" data-testid="container">
-            <h1>Consuming json placeholder API</h1>
-            <button onClick={toggleTheme}>click</button>
-            <div>
-                <button onClick={() => setPostsOrAlbums(true)} disabled={postsOrAlbums}>Posts</button>
-                <button onClick={() => setPostsOrAlbums(false)} disabled={!postsOrAlbums}>Albums</button>
+        <GoogleOAuthProvider clientId={"167402479759-n01k31qjac5etm31ujfqn6d5trd88i5c.apps.googleusercontent.com"}>
+            <div className="App" data-testid="container">
+                <h1>Consuming json placeholder API</h1>
+                <GoogleLogin />
+                <button onClick={toggleTheme}>click</button>
+                <div>
+                    <button onClick={() => setPostsOrAlbums(true)} disabled={postsOrAlbums}>Posts</button>
+                    <button onClick={() => setPostsOrAlbums(false)} disabled={!postsOrAlbums}>Albums</button>
+                </div>
+                {postsOrAlbums ? <Posts /> : <Albums />}
+                <ScrollUpButton />
             </div>
-            {postsOrAlbums ? <Posts /> : <Albums />}
-            <ScrollUpButton />
-        </div>
-
+        </GoogleOAuthProvider>
     );
 };
 
