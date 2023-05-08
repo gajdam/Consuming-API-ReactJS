@@ -89,9 +89,11 @@ const Posts = () => {
 
     return (
         <div>
-            <h2>Posts</h2>
-            <CharFilters onFilterClick = {handleCharFilterClick}/>
-            <LoadFilters onFilterClick = {handleLoadFilterClick}/>
+            <h2 className="posts-title">Posts</h2>
+                <div className="filter-buttons-div">
+                <p>number of chars</p><CharFilters onFilterClick = {handleCharFilterClick}/>
+                <p>number of posts</p><LoadFilters onFilterClick = {handleLoadFilterClick}/>
+            </div>
             {loadedPosts.map(post => (
                 <div key={post.id} className="posts">
                     <h3>{post.title}</h3>
@@ -101,8 +103,10 @@ const Posts = () => {
                 </div>
             ))}
             {!hideBtn ? (
-                <button onClick={handleLoadMoreClick}>Load more posts</button>
-            ) : (<h4>No more posts</h4>)}
+                <div className="load-more-posts">
+                    <button onClick={handleLoadMoreClick}>Load more posts</button>
+                </div>
+            ) : (<div className="load-more-posts"><h4>No more posts</h4></div>)}
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import './ScrollButon.css';
+import './index.css';
 
 const ScrollUpButton = () => {
     const [isVisible, setIsVisible] = useState(false);

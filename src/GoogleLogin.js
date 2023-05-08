@@ -45,7 +45,7 @@ function GoogleLogin() {
                     <button onClick={logOut}>Log out</button>
                 </div>
             ) : (
-                <button onClick={() => login()}>Sign in with Google</button>
+                <button className="google-btn" onClick={() => login()}>Sign in with Google</button>
             )}
         </div>
     );
