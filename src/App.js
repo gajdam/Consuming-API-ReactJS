@@ -12,6 +12,7 @@ const App = () => {
     const toggleTheme = () => {
         const root = document.documentElement;
         root.style.setProperty('--bg-color', isDarkThemeOn ? 'grey' : 'black');
+        root.style.setProperty('--bg-color2', isDarkThemeOn ? '#888787' : 'pink');
         root.style.setProperty('--txt-color', isDarkThemeOn ? 'black' : 'white');
         root.style.setProperty('--btn-color', isDarkThemeOn ? '#41658A' : 'pink');
         root.style.setProperty('--btn-hover', isDarkThemeOn ? 'blue' : 'red');

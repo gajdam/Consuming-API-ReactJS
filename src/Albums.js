@@ -14,12 +14,12 @@ const Albums = () => {
 
     return (
         <div>
-            <h1>Albums</h1>
+            <h2>Albums</h2>
             {/*<LoadFilters onFilterClick={}/>*/}
             {albums.map(album =>
                 <div key={album.id}>
                     <button>Open</button>
-                    <h2>{album.title}</h2>
+                    <h3>{album.title}</h3>
                     <Photos albumId={album.id}/>
                 </div>
             )}
