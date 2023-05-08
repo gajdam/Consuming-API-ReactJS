@@ -89,7 +89,7 @@ const Posts = () => {
 
     return (
         <div>
-            <h1>Posts</h1>
+            <h2>Posts</h2>
             <CharFilters onFilterClick = {handleCharFilterClick}/>
             <LoadFilters onFilterClick = {handleLoadFilterClick}/>
             {loadedPosts.map(post => (

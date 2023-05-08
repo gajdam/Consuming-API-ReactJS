@@ -1,6 +1,8 @@
-import {fireEvent, render, screen, waitFor} from '@testing-library/react';
+import {fireEvent, getByRole, getByText, render, screen, waitFor} from '@testing-library/react';
 import App from './App';
 import ScrollUpButton from "./ScrollUpButton";
+import Comments from "./Comments";
+import Posts from "./Posts";
 
 //APP Component tests
 
@@ -79,4 +81,34 @@ test('does not render the button when isVisible is false', () => {
   render(<ScrollUpButton/>);
   const button = screen.queryByRole('button');
   expect(button).not.toBeInTheDocument();
+});
+
+//Comment tests
+
+test('renders first comment on the first post', async () => {
+  render(<App />);
+  await waitFor(() => {
+    const comment = screen.getByText('id labore ex et quam laborum');
+    expect(comment).toBeInTheDocument();
+  });
+});
+
+test('renders Load more btn in first post', async () => {
+  const postId = 1;
+  render(<Comments postId={postId} />);
+  await waitFor(() => {
+    const btn = screen.getByRole('button', {name: 'Load more'})
+    expect(btn).toBeInTheDocument();
+  });
+});
+
+test('renders Hide btn after loading all comms in the first post', async () => {
+  const postId = 1;
+  render(<Comments postId={postId} />);
+  await waitFor(() => {
+    const btn = screen.getByRole('button', {name: 'Load more'});
+    fireEvent.click(btn);
+    const hideBtn = screen.getByRole('button', {name: 'Hide'});
+    expect(hideBtn).toBeInTheDocument();
+  });
 });
