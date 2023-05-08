@@ -101,7 +101,7 @@ const Posts = () => {
                 </div>
             ))}
             {!hideBtn ? (
-                <button onClick={handleLoadMoreClick}>Load More</button>
+                <button onClick={handleLoadMoreClick}>Load more posts</button>
             ) : (<h4>No more posts</h4>)}
         </div>
     );

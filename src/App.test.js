@@ -53,6 +53,28 @@ test('changes theme on button click', () => {
   expect(document.documentElement.style.getPropertyValue('--bg-color')).toBe('grey');
 });
 
+test('finds the 24th post on 12th filter and 2nd post load', async () => {
+  render(<App/>);
+  const loadFilterButton = screen.getByRole('button', {name: '12'});
+  fireEvent.click(loadFilterButton);
+  await waitFor(() => {
+    const loadMorePostsButton = screen.getByRole('button', {name: 'Load more posts'});
+    fireEvent.click(loadMorePostsButton);
+    const textSearch = screen.getByText('autem hic labore sunt dolores incidunt');
+    expect(textSearch).toBeInTheDocument();
+  })
+});
+
+test('No more posts for -10 filter', async () => {
+  render(<App/>);
+  const charFilterButton = screen.getByRole('button', {name: '-10'});
+  fireEvent.click(charFilterButton);
+  await waitFor(() => {
+    const noMorePostsH4 = screen.getByRole('heading', {name: 'No more posts'});
+    expect(noMorePostsH4).toBeInTheDocument();
+  })
+})
+
 //SCROLL-UP-BTN tests
 
 test('does not render the button when isVisible is false', () => {
