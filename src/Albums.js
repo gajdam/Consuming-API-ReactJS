@@ -15,11 +15,10 @@ const Albums = () => {
     return (
         <div>
             <h2>Albums</h2>
-            {/*<LoadFilters onFilterClick={}/>*/}
             {albums.map(album =>
                 <div key={album.id}>
-                    <button>Open</button>
                     <h3>{album.title}</h3>
+                    <button>Open</button>
                     <Photos albumId={album.id}/>
                 </div>
             )}

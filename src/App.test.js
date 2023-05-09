@@ -3,6 +3,7 @@ import App from './App';
 import ScrollUpButton from "./ScrollUpButton";
 import Comments from "./Comments";
 import Posts from "./Posts";
+import loadFilters from "./LoadFilters";
 
 //APP Component tests
 
@@ -52,6 +53,48 @@ test('changes theme on button click', () => {
   fireEvent.click(toggleButton);
   expect(document.documentElement.style.getPropertyValue('--bg-color')).toBe('grey');
 });
+
+//Posts test
+
+test('Post load for 3 load filter', async () => {
+  render(<App/>);
+  const loadFilterButton = screen.getByRole('button', {name: '3'});
+  fireEvent.click(loadFilterButton);
+  await waitFor(() => {
+    const posts = screen.getAllByRole('heading', {level: 3});
+    expect(posts.length).toBe(3);
+  })
+})
+
+test('Post load for 6 load filter', async () => {
+  render(<App/>);
+  const loadFilterButton = screen.getByRole('button', {name: '6'});
+  fireEvent.click(loadFilterButton);
+  await waitFor(() => {
+    const posts = screen.getAllByRole('heading', {level: 3});
+    expect(posts.length).toBe(6);
+  })
+})
+
+test('Post load for 9 load filter', async () => {
+  render(<App/>);
+  const loadFilterButton = screen.getByRole('button', {name: '9'});
+  fireEvent.click(loadFilterButton);
+  await waitFor(() => {
+    const posts = screen.getAllByRole('heading', {level: 3});
+    expect(posts.length).toBe(9);
+  })
+})
+
+test('Post load for 12 load filter', async () => {
+  render(<App/>);
+  const loadFilterButton = screen.getByRole('button', {name: '12'});
+  fireEvent.click(loadFilterButton);
+  await waitFor(() => {
+    const posts = screen.getAllByRole('heading', {level: 3});
+    expect(posts.length).toBe(12);
+  })
+})
 
 test('finds the 24th post on 12th filter and 2nd post load', async () => {
   render(<App/>);
