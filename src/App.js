@@ -7,10 +7,11 @@ import GoogleLogin from "./GoogleLogin"
 import {GoogleOAuthProvider} from "@react-oauth/google";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import {BrowserRouter as Router, Route, Routes, NavLink} from "react-router-dom";
+import Photos from "./Photos";
 
 export const ThemeContext = createContext(null);
 const App = () => {
-    const [postsOrAlbums, setPostsOrAlbums] = useState(true);
     const [isDarkThemeOn, setIsDarkThemeOn] = useState(false);
 
     const toggleTheme = () => {
@@ -26,12 +27,13 @@ const App = () => {
 
     return (
         <GoogleOAuthProvider clientId={"167402479759-n01k31qjac5etm31ujfqn6d5trd88i5c.apps.googleusercontent.com"}>
+          <Router>
             <div className="App" data-testid="container">
                 <header>
                     <h1>Consuming json placeholder API</h1>
                         <nav>
-                            <button onClick={() => setPostsOrAlbums(true)} disabled={postsOrAlbums}>Posts</button>
-                            <button onClick={() => setPostsOrAlbums(false)} disabled={!postsOrAlbums}>Albums</button>
+                            <NavLink to={"/posts"}>Posts</NavLink>
+                            <NavLink to={"/albums"}>Albums</NavLink>
                         </nav>
                     <button onClick={toggleTheme} className="theme-switcher">
                         {isDarkThemeOn ? (
@@ -43,10 +45,15 @@ const App = () => {
                         <GoogleLogin />
                 </header>
                 <div className="main-content">
-                {postsOrAlbums ? <Posts /> : <Albums />}
-                <ScrollUpButton />
-                </div>
+                  <Routes>
+                      <Route path={"/posts"} element={<Posts />}/>
+                      <Route exact path={"/albums"} element={<Albums />}/>
+                      <Route path="/albums/:albumId" element={<Photos />} />
+                  </Routes>                
+              </div>
+              <ScrollUpButton />
             </div>
+          </Router>
         </GoogleOAuthProvider>
     );
 };
