@@ -15,7 +15,7 @@ test('renders app component', () => {
 
 test('renders theme toggle button', () => {
   render(<App />);
-  const buttonTxt = screen.getByText(/click/i);
+  const buttonTxt = screen.getByText(/theme/i);
   expect(buttonTxt).toBeInTheDocument();
 });
 
@@ -47,7 +47,7 @@ test('renders Albums component after clicking Albums button', () => {
 
 test('changes theme on button click', () => {
   render(<App/>);
-  const toggleButton = screen.getByRole('button', {name: 'click'});
+  const toggleButton = screen.getByRole('button', {name: 'theme'});
   fireEvent.click(toggleButton);
   expect(document.documentElement.style.getPropertyValue('--bg-color')).toBe('black');
   fireEvent.click(toggleButton);
