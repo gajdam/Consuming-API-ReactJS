@@ -5,10 +5,11 @@ import {createContext} from "react";
 import ScrollUpButton from "./ScrollUpButton";
 import GoogleLogin from "./GoogleLogin"
 import {GoogleOAuthProvider} from "@react-oauth/google";
+import {BrowserRouter as Router, Route, Routes, NavLink} from "react-router-dom";
+import Photos from "./Photos";
 
 export const ThemeContext = createContext(null);
 const App = () => {
-    const [postsOrAlbums, setPostsOrAlbums] = useState(true);
     const [isDarkThemeOn, setIsDarkThemeOn] = useState(false);
 
     const toggleTheme = () => {
@@ -24,17 +25,23 @@ const App = () => {
 
     return (
         <GoogleOAuthProvider clientId={"167402479759-n01k31qjac5etm31ujfqn6d5trd88i5c.apps.googleusercontent.com"}>
-            <div className="App" data-testid="container">
-                <h1>Consuming json placeholder API</h1>
-                <GoogleLogin />
-                <button onClick={toggleTheme}>click</button>
-                <div>
-                    <button onClick={() => setPostsOrAlbums(true)} disabled={postsOrAlbums}>Posts</button>
-                    <button onClick={() => setPostsOrAlbums(false)} disabled={!postsOrAlbums}>Albums</button>
+            <Router>
+                <div className="App" data-testid="container">
+                    <h1>Consuming json placeholder API</h1>
+                    <GoogleLogin />
+                    <button onClick={toggleTheme}>click</button>
+                    <div>
+                        <NavLink to={"/posts"}>Posts</NavLink>
+                        <NavLink to={"/albums"}>Albums</NavLink>
+                    </div>
+                    <Routes>
+                        <Route path={"/posts"} element={<Posts />}/>
+                        <Route exact path={"/albums"} element={<Albums />}/>
+                        <Route path="/albums/:albumId" element={<Photos />} />
+                    </Routes>
+                    <ScrollUpButton />
                 </div>
-                {postsOrAlbums ? <Posts /> : <Albums />}
-                <ScrollUpButton />
-            </div>
+            </Router>
         </GoogleOAuthProvider>
     );
 };

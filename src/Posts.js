@@ -82,7 +82,6 @@ const Posts = () => {
     //loading mechanic
     const handleLoadMoreClick = () => {
         const currentlyLoadedCount = loadedPosts.length;
-        const index = currentlyLoadedCount + loadNumber;
         const morePosts = filteredPosts.slice(currentlyLoadedCount, currentlyLoadedCount + loadNumber);
         setLoadedPosts([...loadedPosts, ...morePosts]);
     }
