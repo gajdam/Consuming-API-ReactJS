@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LoadFilters from "./LoadFilters";
 import {useParams} from "react-router-dom";
+import Masonry, {ResponsiveMasonry} from 'react-responsive-masonry';
 
 const Photos = () => {
     const {albumId} = useParams();
@@ -58,17 +59,22 @@ const Photos = () => {
 
     return (
         <div>
-            <h2>Photos</h2>
-            <LoadFilters onFilterClick = {handleLoadFilterClick}/>
-            {loadedPhotos.map(photo => (
-                <div key={photo.id}>
-                    <h4>{photo.title}</h4>
-                    <img src={photo.url}></img>
-                </div>
-            ))}
+            <h2 className="posts-title">Photos</h2>
+            <div className="filter-buttons-div">
+                <p>number of photos</p><LoadFilters onFilterClick = {handleLoadFilterClick}/>
+            </div>
+            <ResponsiveMasonry columnsCountBreakPoints={{350:1, 750:2, 900:3}} style={{padding: "10px"}}>
+                <Masonry gutter="20px">
+                    {loadedPhotos.map(photo => (
+                    <div className="posts" key={photo.id}>
+                        <img src={photo.url} style={{width: "100%", display: "block"}} alt=""></img>
+                    </div>
+                    ))}
+                </Masonry>
+            </ResponsiveMasonry>
             {!hideBtn ? (
-                <button onClick={handleLoadMoreClick}>Load more photos</button>
-            ) : (<h4>No more photos</h4>)}
+                <div className="load-more-posts"><button onClick={handleLoadMoreClick}>Load more photos</button></div>
+            ) : (<div className="load-more-posts"><h4>No more photos</h4></div>)}
         </div>
     );
 };
