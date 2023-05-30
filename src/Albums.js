@@ -65,12 +65,12 @@ const Albums = () => {
                 <div className='posts' key={album.id}>
                     <h3>{album.title}</h3>
                     <AuthorInfo userID={album.userId}/>
-                    <NavLink to={`/albums/${album.id}`}>Open</NavLink>
+                    <NavLink  to={`/albums/${album.id}`}>Open</NavLink>
                 </div>
             )}
             {!hideBtn ? (
-                <div className="load-more-posts"><button onClick={handleLoadMoreClick}>Load more photos</button></div>
-            ) : (<div className="load-more-posts"><h4>No more photos</h4></div>)}
+                <div className="load-more-posts"><button onClick={handleLoadMoreClick}>Load more albums</button></div>
+            ) : (<div className="load-more-posts"><h4>No more albums</h4></div>)}
         </div>
     )
 }
