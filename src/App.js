@@ -16,12 +16,14 @@ const App = () => {
 
     const toggleTheme = () => {
         const root = document.documentElement;
-        root.style.setProperty('--bg-color', isDarkThemeOn ? 'grey' : 'black');
-        root.style.setProperty('--bg-color2', isDarkThemeOn ? '#888787' : 'pink');
+        root.style.setProperty('--bg-color', isDarkThemeOn ? 'grey' : '#37323E');
+        root.style.setProperty('--bg-color2', isDarkThemeOn ? '#888787' : '#473f54');
         root.style.setProperty('--txt-color', isDarkThemeOn ? 'black' : 'white');
-        root.style.setProperty('--btn-color', isDarkThemeOn ? '#41658A' : 'pink');
-        root.style.setProperty('--btn-hover', isDarkThemeOn ? 'blue' : 'red');
-
+        root.style.setProperty('--btn-color', isDarkThemeOn ? '#41658A' : '#6d5793');
+        root.style.setProperty('--btn-hover', isDarkThemeOn ? 'blue' : '#8c71bb');
+        root.style.setProperty('--nav-color', isDarkThemeOn ? '#5e5e5e' : '#2c2931');
+        root.style.setProperty('--shadow-color', isDarkThemeOn ? 'rgba(0, 0, 0, 0.1)' : 'rgb(44,41,49, 1.5)');
+        // 44 41 49
         setIsDarkThemeOn(!isDarkThemeOn);
     };
 
