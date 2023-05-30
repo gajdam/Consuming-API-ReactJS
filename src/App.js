@@ -20,7 +20,7 @@ const App = () => {
         root.style.setProperty('--bg-color2', isDarkThemeOn ? '#888787' : '#473f54');
         root.style.setProperty('--txt-color', isDarkThemeOn ? 'black' : 'white');
         root.style.setProperty('--btn-color', isDarkThemeOn ? '#41658A' : '#6d5793');
-        root.style.setProperty('--btn-hover', isDarkThemeOn ? 'blue' : '#8c71bb');
+        root.style.setProperty('--btn-hover', isDarkThemeOn ? '#467bb7' : '#8c71bb');
         root.style.setProperty('--nav-color', isDarkThemeOn ? '#5e5e5e' : '#2c2931');
         root.style.setProperty('--shadow-color', isDarkThemeOn ? 'rgba(0, 0, 0, 0.1)' : 'rgb(44,41,49, 1.5)');
         // 44 41 49
