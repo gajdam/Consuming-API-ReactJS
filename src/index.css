@@ -6,6 +6,7 @@
   --btn-color: #41658A;
   --btn-hover: #467bb7;
   --btn-txt: #e1d9d9;
+  --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -131,7 +132,7 @@ body {
   margin: 0 auto;
   padding: 20px;
   border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .posts h2 {
