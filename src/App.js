@@ -28,21 +28,23 @@ const App = () => {
     return (
         <GoogleOAuthProvider clientId={"167402479759-n01k31qjac5etm31ujfqn6d5trd88i5c.apps.googleusercontent.com"}>
           <Router>
-            <div className="App" data-testid="container">
+            <div className="App" data-testid="container" id="app">
                 <header>
-                    <h1>Consuming json placeholder API</h1>
-                        <nav>
+                    <h1><a href="#top"> json placeholder API</a></h1>
+                        <nav className="first-nav">
                             <NavLink to={"/posts"}>Posts</NavLink>
                             <NavLink to={"/albums"}>Albums</NavLink>
                         </nav>
-                    <button onClick={toggleTheme} className="theme-switcher">
+                    <button onClick={toggleTheme} className="theme-switcher" id="themeBtn">
                         {isDarkThemeOn ? (
                         <FontAwesomeIcon icon={faSun}/>
                         ) : (
                         <FontAwesomeIcon icon={faMoon}/>
                             )}
                     </button>
+                        <div className="google-div">
                         <GoogleLogin />
+                        </div>
                 </header>
                 <div className="main-content">
                   <Routes>
