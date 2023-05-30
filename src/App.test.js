@@ -145,7 +145,7 @@ test('renders Load more btn in first post', async () => {
   });
 });
 
-test('renders Hide btn after loading all comms in the first post', async () => {
+test('renders Hide btn after loading all comms in the \first post', async () => {
   const postId = 1;
   render(<Comments postId={postId} />);
   await waitFor(() => {
