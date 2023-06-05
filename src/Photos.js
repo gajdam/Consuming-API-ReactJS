@@ -63,11 +63,16 @@ const Photos = () => {
             <div className="filter-buttons-div">
                 <p>number of photos</p><LoadFilters onFilterClick = {handleLoadFilterClick}/>
             </div>
-            <ResponsiveMasonry columnsCountBreakPoints={{350:1, 750:2, 900:3}} style={{padding: "10px"}}>
+            <ResponsiveMasonry columnsCountBreakPoints={{300:1, 600:2, 900:3}} style={{padding: "10px"}}>
                 <Masonry gutter="20px">
                     {loadedPhotos.map(photo => (
-                    <div className="posts" key={photo.id}>
+                    <div className="imageContainer" key={photo.id}>
                         <img src={photo.url} style={{width: "100%", display: "block"}} alt=""></img>
+                        <div className='overlay'>
+                            <div className='overlayText'>
+                                <h3>{photo.title}</h3>
+                            </div>
+                        </div>
                     </div>
                     ))}
                 </Masonry>
